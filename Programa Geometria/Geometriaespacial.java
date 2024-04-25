@@ -14,6 +14,7 @@ public class Geometriaespacial {
         System.out.println("2. Paralelepípedo");
         System.out.println("3. Pirâmide");
         System.out.println("4. Esfera");
+        System.out.println("5. Cilindro");
         System.out.print("Opção: ");
         escolha = scanner.nextInt();
 
@@ -23,11 +24,16 @@ public class Geometriaespacial {
         } else if (escolha == 3) {
             System.out.println("Digite a altura: ");
             altura = scanner.nextFloat();
-            System.out.println("Digite a base: ");
+            System.out.println("Digite a area da base: ");
             base = scanner.nextFloat();
         } else if (escolha == 4) {
             System.out.println("Digite o raio: ");
             raio = scanner.nextFloat();
+        } else if(escolha == 5){
+            System.out.print("Digite o raio");
+            raio = scanner.nextFloat();
+            System.out.println("Digite a altura");
+            altura = scanner.nextFloat();
         } else {
             System.out.println("Opção inválida.");
         }
@@ -51,6 +57,8 @@ public class Geometriaespacial {
             case 4:
                 volume = (4 * 3.14f * raio * raio * raio) / 3; // Usando 3.14 como valor aproximado de Pi
                 break;
+            case 5:
+                volume = (3.14f*raio*raio)*altura;
             default:
                 System.out.println("Opção inválida.");
                 return;
