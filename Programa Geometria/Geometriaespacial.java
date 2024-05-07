@@ -17,8 +17,9 @@ public class Geometriaespacial {
             System.out.println("3. Pirâmide");
             System.out.println("4. Esfera");
             System.out.println("5. Cilindro");
-            System.out.println("6. Voltar ao menu principal");
-            System.out.println("7. Finalizar programa");
+            System.out.println("6. Cone")
+            System.out.println("7. Voltar ao menu principal");
+            System.out.println("8. Finalizar programa");
             System.out.print("Opção: ");
 
             escolha = scanner.nextInt();
@@ -40,12 +41,14 @@ public class Geometriaespacial {
                     raio = scanner.nextFloat();
                     break;
                 case 5:
+                case 6:
                     System.out.print("Digite o raio: ");
                     raio = scanner.nextFloat();
                     System.out.println("Digite a altura: ");
                     altura = scanner.nextFloat();
                     break;
-                case 6:
+  
+                case 7:
                     voltarMenu = true; // Indica que o usuário deseja voltar ao menu principal
                     break;
                 default:
@@ -81,6 +84,8 @@ public class Geometriaespacial {
             case 5:
                 volume = (3.14f * raio * raio) * altura;
                 break;
+            case 6:
+                volume = ((3.14f * raio * raio) * altura)/3;
             default:
                 System.out.println("Opção inválida.");
                 return;
