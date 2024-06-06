@@ -11,16 +11,16 @@ public class Menu {
             System.out.println("2. Geometria Espacial");
             System.out.println("3. Sair");
             System.out.print("Opção: ");
-            
+
             int escolha = scanner.nextInt();
 
             switch (escolha) {
                 case 1:
-                    Geometriaplana geometriaPlana = new Geometriaplana();
+                    Geometriaplana geometriaPlana = new Geometriaplana(scanner);
                     geometriaPlana.calculaFormas();
                     break;
                 case 2:
-                    Geometriaespacial geometriaEspacial = new Geometriaespacial();
+                    Geometriaespacial geometriaEspacial = new Geometriaespacial(scanner);
                     geometriaEspacial.calculaFormas();
                     break;
                 case 3:
@@ -30,7 +30,7 @@ public class Menu {
                     System.out.println("Opção inválida.");
                     break;
             }
-            
+
             if (continuar) {
                 System.out.print("Deseja voltar ao menu de opções? (sim/não): ");
                 String resposta = scanner.next();

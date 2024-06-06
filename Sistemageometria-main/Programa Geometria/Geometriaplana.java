@@ -1,16 +1,24 @@
+
 import java.util.Scanner;
 
 public class Geometriaplana {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
     private int escolha;
     private float altura;
     private float base;
     private float raio;
     private float lado;
     private float base_maior;
+    
+    private static final float PI = 3.14f;
+    private static final float RAIZ_DE_TRES = 1.7f;
 
-    public Geometriaplana() {
+    public Geometriaplana(Scanner scanner) {
+        this.scanner = scanner;
+        mostrarMenu();
+    }
 
+    private void mostrarMenu() {
         System.out.println("Escolha a forma geométrica:");
         System.out.println("1. Quadrado");
         System.out.println("2. Retângulo");
@@ -25,70 +33,78 @@ public class Geometriaplana {
     }
 
     public void calculaFormas() {
+        if (escolha == 7 || escolha == 8) {
+            return; // Voltar ao menu principal ou finalizar programa
+        }
+        if (!receberDados()) {
+            System.out.println("Opção inválida.");
+            return;
+        }
 
-        float area = 0;
+        float area = calcularArea();
+        System.out.println("A área calculada é: " + area);
+    }
+
+    private boolean receberDados() {
         switch (escolha) {
             case 1:
-                System.out.println("Digite o lado: ");
-                lado = scanner.nextFloat();
+                System.out.print("Digite o lado: ");
+                lado = parseInput(scanner.next());
                 break;
             case 2:
-                System.out.println("Digite a base: ");
-                base = scanner.nextFloat();
-                System.out.println("Digite a altura: ");
-                altura = scanner.nextFloat();
+                System.out.print("Digite a base: ");
+                base = parseInput(scanner.next());
+                System.out.print("Digite a altura: ");
+                altura = parseInput(scanner.next());
                 break;
             case 3:
-                System.out.println("Digite a base: ");
-                base = scanner.nextFloat();
-                System.out.println("Digite a altura: ");
-                altura = scanner.nextFloat();
+                System.out.print("Digite a base: ");
+                base = parseInput(scanner.next());
+                System.out.print("Digite a altura: ");
+                altura = parseInput(scanner.next());
                 break;
             case 4:
-                System.out.println("Digite o raio: ");
-                raio = scanner.nextFloat();
+                System.out.print("Digite o raio: ");
+                raio = parseInput(scanner.next());
                 break;
             case 5:
                 System.out.print("Digite o lado: ");
-                lado = scanner.nextFloat();
+                lado = parseInput(scanner.next());
                 break;
             case 6:
-                System.out.println("Digite a base maior");
-                base_maior = scanner.nextFloat();
-                System.out.println("Digite a base menor");
-                base = scanner.nextFloat();
-                System.out.println("Digite a altura");
-                altura = scanner.nextFloat();
+                System.out.print("Digite a base maior: ");
+                base_maior = parseInput(scanner.next());
+                System.out.print("Digite a base menor: ");
+                base = parseInput(scanner.next());
+                System.out.print("Digite a altura: ");
+                altura = parseInput(scanner.next());
                 break;
             default:
-                System.out.println("Opção inválida.");
-                break;
+                return false;
         }
+        return true;
+    }
 
+    private float parseInput(String input) {
+        return Float.parseFloat(input.replace(",", "."));
+    }
+
+    private float calcularArea() {
         switch (escolha) {
             case 1:
-                area = lado * lado;
-                break;
+                return lado * lado;
             case 2:
-                area = base * altura;
-                break;
+                return base * altura;
             case 3:
-                area = (base * altura) / 2;
-                break;
+                return (base * altura) / 2;
             case 4:
-                area = 3.14f * raio * raio; // Usando 3.14 como valor aproximado de Pi
-                break;
+                return PI * raio * raio;
             case 5:
-                area = (float) ((3 * (lado * lado) * 1.7) / 2); // Raiz de três pode ser aproximada para 1.7
-                break;
+                return (3 * (lado * lado) * RAIZ_DE_TRES) / 2;
             case 6:
-                area = (((base_maior + base) * altura) / 2); // base maior = lado mais comprido do trapézio
-                break;
+                return ((base_maior + base) * altura) / 2;
             default:
-                System.out.println("Opção inválida.");
-                return;
+                return 0;
         }
-
-        System.out.println("A área calculada é: " + area);
     }
 }
